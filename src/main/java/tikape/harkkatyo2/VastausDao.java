@@ -246,7 +246,7 @@ public class VastausDao implements Dao<Vastaus, Integer> {
 
         Connection conn = database.getConnection();
 
-        PreparedStatement stmt = conn.prepareStatement("INSERT INTO Vastaus (kysymys_id, teksti, oikein) VALUES (?,?,?)");
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO vastaus (kysymys_id, teksti, oikein) VALUES (?,?,?)");
 
         stmt.setInt(1, vastaus.getKysymys_id());
         stmt.setString(2, vastaus.getTeksti());
