@@ -1,0 +1,69 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>Otsikko</title>
+        <meta charset="utf-8" />
+    </head>
+
+    <body>
+        
+        <h2>Kysymykset</h2>
+
+  
+
+  <ol>
+
+        <li th:each="kysymys : ${kysymykset}">
+                <form th:action="@{~/kysymysRemover/{id}(id=${kysymys.id})}" method="POST">
+                    <a th:href="@{~/teuvo/{id}(id=${kysymys.id})}"><div th:text="${kysymys.teksti}">kysymysteksti</div></a>
+                    <br/>
+                <input type="submit" value="Poista kysymys"/><br/><br/>
+                </form>
+                        
+        </li>
+            
+      
+
+  </ol>
+  
+  
+  <div>
+  <h2>Luo uusi kysymys</h2>
+  <form action="/kysymysAdder" method="POST">
+    <table>
+      <tr>
+        <td>
+          Kurssi:
+        </td>
+        <td>
+            <input type="text" name="kurssi"/>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Aihe:
+        </td>
+        <td>
+            <input type="text" name="aihe"/>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Kysymysteksti:
+        </td>
+        <td>
+            <textarea rows="10" cols="30" name="kysymysteksti">
+            </textarea>
+        </td>
+      </tr>
+    </table>
+
+    <input type="submit" value="Lisää kysymys"/>
+  </form>
+  
+
+  </div>
+        
+    </body>
+</html>

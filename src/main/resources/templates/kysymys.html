@@ -1,0 +1,93 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>Kysymys</title>
+        <meta charset="utf-8" />
+    </head>
+
+    <body>
+        
+        <h2>Kysymyksen tarkastelu</h2>
+
+  
+
+  <ol>
+
+        <li th:each="kysymys : ${kysymykset}">
+                <form th:action="@{~/kysymysRemover/{id}(id=${kysymys.id})}" method="POST">
+                    <div th:text="${kysymys.teksti}">kysymysteksti</div>
+                    <div><span>Kurssi: </span><span th:text="${kysymys.kurssi}">oops</span></div>
+                    <div><span>Aihe: </span><span th:text="${kysymys.aihe}">oops</span></div>
+                    <div><span>Kys.Id: </span><span th:text="${kysymys.id}">oops</span></div>
+                    <input type="submit" value="Poista kysymys"/>
+                </form>
+            
+            <ol>
+                <h3> Vastausvaihtoehdot: </h3>
+                <li th:each="vastaus : ${kysymys.vastaukset}">
+                <form th:action="@{~/vastausRemover/{id}(id=${vastaus.id})}" method="POST">
+                    
+                    <div th:switch="${vastaus.oikein}"> 
+                        <span th:text="${vastaus.teksti}">vastausteksti</span>
+                        <span th:case="false">(Väärä vastaus)</span>
+                        <span th:case="true">(Oikea vastaus)</span>                        
+                    </div>
+                    
+                    <input name="kysid" th:value="${kysymys.id}" type='hidden'></input>
+                    <input type="submit" value="Poista vastausvaihtoehto"/><br/><br/>
+                </form>
+                </li>
+          
+            </ol>
+            
+            <form action="/"><br/><br/><br/>
+                <button type="submit" >Takaisin pääsivulle</button>
+            </form>
+            
+            <div> 
+    
+                <h2>Luo uusi vastausvaihtoehto</h2>
+                <form th:action="@{~/vastausAdder/{id}(id=${kysymys.id})}" method="POST">
+                    <input name="kysymys_id" th:value="${kysymys.id}" type='hidden'></input>
+                    <table>
+                        
+                        <tr>
+                            <td>
+                                teksti:
+                            </td>
+                            <td>
+                                <textarea rows="10" cols="30" name="vastausteksti">
+                                </textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Vastaus oikein vai väärin?            
+                            </td>
+                            <td>    
+                                <input type="radio" name="oikein" value="true"/> Oikein <br/>
+                                <input type="radio" name="oikein" value="false" checked=''/> Väärin<br/>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <input type="submit" value="Lisää vastausvaihtoehto"/>
+                </form>
+
+            </div>
+            
+            
+        </li>
+            
+      
+
+  </ol>
+        
+  
+  
+  
+  
+        
+    </body>
+</html>
