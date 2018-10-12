@@ -37,7 +37,7 @@ public class VastausDao implements Dao<Vastaus, Integer> {
 
         Connection conn = database.getConnection();
 
-        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Vastaus WHERE id = ?");
+        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM vastaus WHERE id = ?");
 
         stmt.setInt(1, key);
 
@@ -75,7 +75,7 @@ public class VastausDao implements Dao<Vastaus, Integer> {
 
  
 
-    // hakee kaikki asiakkaat tietokannasta ja palauttaa ne listalla
+    
 
     @Override
 
@@ -89,7 +89,7 @@ public class VastausDao implements Dao<Vastaus, Integer> {
 
         Connection conn = database.getConnection();
 
-        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Vastaus");
+        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM vastaus");
 
         //stmt.setInt(1, key);
 
@@ -97,11 +97,7 @@ public class VastausDao implements Dao<Vastaus, Integer> {
 
         ResultSet rs = stmt.executeQuery();
 
-        while (rs.next()) {
-
-        
-
- 
+        while (rs.next()) { 
 
                 Vastaus a = new Vastaus(rs.getInt("id"), rs.getInt("kysymys_id"), rs.getString("teksti"), rs.getBoolean("oikein") );
 
@@ -137,7 +133,7 @@ public class VastausDao implements Dao<Vastaus, Integer> {
 
         Connection conn = database.getConnection();
 
-        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Vastaus WHERE kysymys_id = ?");
+        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM vastaus WHERE kysymys_id = ?");
 
         stmt.setInt(1, key);
 
@@ -206,7 +202,7 @@ public class VastausDao implements Dao<Vastaus, Integer> {
 
         Connection conn = database.getConnection();
 
-        PreparedStatement stmt = conn.prepareStatement("DELETE FROM Vastaus WHERE id = ?");
+        PreparedStatement stmt = conn.prepareStatement("DELETE FROM vastaus WHERE id = ?");
 
  
 
@@ -226,7 +222,7 @@ public class VastausDao implements Dao<Vastaus, Integer> {
 
         Connection conn = database.getConnection();
 
-        PreparedStatement stmt = conn.prepareStatement("DELETE FROM Vastaus WHERE kysymys_id = ?");
+        PreparedStatement stmt = conn.prepareStatement("DELETE FROM vastaus WHERE kysymys_id = ?");
 
  
 
@@ -264,7 +260,7 @@ public class VastausDao implements Dao<Vastaus, Integer> {
 
  
 
-        stmt = conn.prepareStatement("SELECT * FROM Vastaus WHERE teksti = ?");
+        stmt = conn.prepareStatement("SELECT * FROM vastaus WHERE teksti = ?");
 
         stmt.setString(1, vastaus.getTeksti());
 

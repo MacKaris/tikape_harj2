@@ -40,7 +40,7 @@ public class KysymysDao implements Dao<Kysymys, Integer> {
 
         Connection conn = database.getConnection();
 
-        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Kysymys WHERE id = ?");
+        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM kysymys WHERE id = ?");
 
         stmt.setInt(1, key);
         
@@ -96,7 +96,7 @@ public class KysymysDao implements Dao<Kysymys, Integer> {
 
         Connection conn = database.getConnection();
 
-        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Kysymys");
+        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM kysymys");
 
         //stmt.setInt(1, key);
 
@@ -184,7 +184,7 @@ public class KysymysDao implements Dao<Kysymys, Integer> {
         
         VastausDao vastausDao = new VastausDao(database);
 
-        PreparedStatement stmt = conn.prepareStatement("DELETE FROM Kysymys WHERE id = ?");
+        PreparedStatement stmt = conn.prepareStatement("DELETE FROM kysymys WHERE id = ?");
 
         stmt.setInt(1, key);
 
@@ -211,7 +211,7 @@ public class KysymysDao implements Dao<Kysymys, Integer> {
 
         Connection conn = database.getConnection();
 
-        PreparedStatement stmt = conn.prepareStatement("INSERT INTO Kysymys (kurssi, aihe, teksti) VALUES (?,?,?)");
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO kysymys (kurssi, aihe, teksti) VALUES (?,?,?)");
 
         stmt.setString(1, kysymys.getKurssi());
         stmt.setString(2, kysymys.getAihe());
@@ -224,7 +224,7 @@ public class KysymysDao implements Dao<Kysymys, Integer> {
 
  
 
-        stmt = conn.prepareStatement("SELECT * FROM Kysymys WHERE teksti = ?");
+        stmt = conn.prepareStatement("SELECT * FROM kysymys WHERE teksti = ?");
 
         stmt.setString(1, kysymys.getTeksti());
 
