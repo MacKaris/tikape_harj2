@@ -183,6 +183,8 @@ public class KysymysDao implements Dao<Kysymys, Integer> {
         Connection conn = database.getConnection();
         
         VastausDao vastausDao = new VastausDao(database);
+        
+        vastausDao.deleteByForeignKey(key);
 
         PreparedStatement stmt = conn.prepareStatement("DELETE FROM kysymys WHERE id = ?");
 
@@ -190,7 +192,7 @@ public class KysymysDao implements Dao<Kysymys, Integer> {
 
         stmt.executeUpdate();
         
-        vastausDao.deleteByForeignKey(key);
+        
 
  
 
